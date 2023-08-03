@@ -16,4 +16,5 @@ MonoBehaviour:
   enemyHealt: 100
   enemyMaxHealt: 100
   enemyDamage: 10
+  dropMoney: 10
   hitFrequency: 5

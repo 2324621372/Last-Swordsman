@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
+    public delegate void UpragdeWeapon();
+    public UpragdeWeapon upragdeWeapon;
+    [SerializeField] private WeaponTypes weaponType;
+    public WeaponTypes WeaponType
+    {
+        get{return weaponType;}
+        set
+        {
+            weaponType = value;
+        }    
+    }
+
+    private float damage;
+
+    void Awake() 
+    {
+       upragdeWeapon  += UpdateWeaponStats;
+       damage = WeaponType.damage;    
+    }
 
     void Update()
     {
@@ -16,6 +35,11 @@ public class AttackHandler : MonoBehaviour
     private void AttackStage()
     {
         EnemyHealtHandler currentEnemy = FindObjectOfType<EnemyHealtHandler>();
-        currentEnemy.DecreaseEnemyHealt(10f);
+        currentEnemy.DecreaseEnemyHealt(damage);
+    }
+
+    private void UpdateWeaponStats()
+    {
+      damage = WeaponType.damage;
     }
 }

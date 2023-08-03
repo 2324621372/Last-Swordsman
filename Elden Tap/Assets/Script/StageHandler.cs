@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageHandler : MonoBehaviour
 {
+   [SerializeField] GameObject VictoryCanvas;
    public delegate void NewEnemyEvent();
    public event NewEnemyEvent newEnemyEvent;
 
@@ -40,11 +42,12 @@ public class StageHandler : MonoBehaviour
          enemyHealtHandler =enemies[currentindex].GetComponent<EnemyHealtHandler>();
          enemyHealtHandler.OnEnemyDeath += SpawnNewEnemy;
          if(newEnemyEvent!=null)
-         newEnemyEvent();
+          newEnemyEvent();
        }
        else
        {
-          Debug.Log("Stage is done!");
+         Debug.Log("a");
+          VictoryCanvas.SetActive(true);
        }
     }
 }

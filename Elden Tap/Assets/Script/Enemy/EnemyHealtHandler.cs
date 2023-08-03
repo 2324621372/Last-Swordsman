@@ -10,8 +10,10 @@ public class EnemyHealtHandler : MonoBehaviour
  
 
  [SerializeField] EnemyTypes enemyType;
-  private float enemyHealt;
+  private float dropMoney;
   public float EnemyMaxHealt;
+
+  private float enemyHealt;
   public float EnemyHealt
   {
     get{return enemyHealt;} 
@@ -20,6 +22,7 @@ public class EnemyHealtHandler : MonoBehaviour
     enemyHealt = value; 
     if(enemyHealt<=0)
     {
+      enemyHealt = 0;
      Destroy(this.gameObject);
      if(OnEnemyDeath !=null)
      {
@@ -27,6 +30,7 @@ public class EnemyHealtHandler : MonoBehaviour
       {
       OnEnemyDecreaseHealt = null;
       }
+      MoneyManager.Instance.IncreaseMoney(dropMoney);
       OnEnemyDeath();
      }
     }
@@ -42,13 +46,14 @@ public class EnemyHealtHandler : MonoBehaviour
  {
    if(enemyType==null){Debug.LogWarning("Enemy Type is null! Please look the gameObject"); return;}
    EnemyHealt = enemyType.enemyHealt; 
-   EnemyMaxHealt = enemyType.enemyMaxHealt;  
+   EnemyMaxHealt = enemyType.enemyMaxHealt;
+   dropMoney = enemyType.dropMoney;
+     
  }
 
   public void DecreaseEnemyHealt(float reciviedDamage)
  {
    EnemyHealt -= reciviedDamage; 
-   Debug.Log(EnemyHealt);
  }    
 
 }

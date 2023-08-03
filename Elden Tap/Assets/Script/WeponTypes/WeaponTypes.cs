@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Weapon Type", menuName ="Create Wepon Type")]
 public class WeaponTypes : ScriptableObject
 {
-  public string WeaponName;
+  public string weaponName;
   public float damage;
   public int currentLevel;
   public const int maxLevel = 10;

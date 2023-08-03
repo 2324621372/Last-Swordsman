@@ -10,14 +10,18 @@ public class EnemyAttack : MonoBehaviour
     int enemyDamage;
     float hitFrequency;
 
-    private void OnEnable()
+    private void Start()
     {
       enemyDamage = enemyTypes.enemyDamage;    
       hitFrequency = enemyTypes.hitFrequency;
       onAttack = ()=> {StartCoroutine(AttackThePlayer());};
-      onAttack();
+      Invoke("StartTheAttack", hitFrequency);
     }
     
+    private void StartTheAttack()
+    {
+      onAttack();
+    }
     
     IEnumerator AttackThePlayer()
     {

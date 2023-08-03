@@ -9,5 +9,6 @@ public class EnemyTypes : ScriptableObject
     public float enemyHealt;
     public float enemyMaxHealt;
     public int enemyDamage;
+    public float dropMoney;
     public float hitFrequency;
 }

@@ -35,9 +35,9 @@ public class EnemyHealtBar : MonoBehaviour
     {
          if (stageHandler != null && stageHandler.enemies.Count > 0)
     {
-        foreach (var enemyGO in stageHandler.enemies)
+        foreach (var enemy in stageHandler.enemies)
         {
-            var enemyHealthHandler = enemyGO.GetComponent<EnemyHealtHandler>();
+            var enemyHealthHandler = enemy.GetComponent<EnemyHealtHandler>();
             if (enemyHealthHandler != null)
             {
                 enemyHealthHandler.OnEnemyDecreaseHealt -= SetUpBar;

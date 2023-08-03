@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0201c4aebda134da07a4b96831d9b1, type: 3}
   m_Name: BasicSword
   m_EditorClassIdentifier: 
-  WeaponName: Basic Sword
-  damage: 15
+  weaponName: Basic Sword
+  damage: 10
   currentLevel: 1
-  maxLevel: 10
