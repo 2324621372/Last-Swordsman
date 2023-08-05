@@ -15,10 +15,10 @@ public class HealtBar : MonoBehaviour
      playerHealtBarSlider.maxValue = PlayerHealtHandler.Instance.PlayerMaxHealt;
      playerHealtBarSlider.value = PlayerHealtHandler.Instance.PlayerHealt; 
      healtNumber.text = $"{PlayerHealtHandler.Instance.PlayerHealt}/{PlayerHealtHandler.Instance.PlayerMaxHealt}";
-     PlayerHealtHandler.Instance.OnDecreasePlayerHealt += UpdateHealtBar;
+     PlayerHealtHandler.Instance.OnChangePlayerHealt += UpdateHealtBar;
    }
 
-   private void UpdateHealtBar()
+   public void UpdateHealtBar()
    {
      playerHealtBarSlider.maxValue = PlayerHealtHandler.Instance.PlayerMaxHealt;
      playerHealtBarSlider.value = PlayerHealtHandler.Instance.PlayerHealt; 

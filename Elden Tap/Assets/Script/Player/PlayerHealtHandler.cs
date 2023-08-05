@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerHealtHandler : MonoBehaviour
 {
    public static PlayerHealtHandler Instance;
+   
    public delegate void DelegateHandler();
-   public event DelegateHandler OnDecreasePlayerHealt;
+   public event DelegateHandler OnChangePlayerHealt;
+   public  DelegateHandler upgradeHealtStats;
+    
 
+    PlayerStats playerStats;
 
-
-    private float playerMaxHealt = 100;
+    private float playerMaxHealt;
     public float PlayerMaxHealt{get{return playerMaxHealt;}}
-    private float playerHealt = 100;
+    private float playerHealt;
     public float PlayerHealt
     {
       get{return playerHealt;}
@@ -28,9 +31,9 @@ public class PlayerHealtHandler : MonoBehaviour
           Debug.Log("You Died");
         }
         
-        if(OnDecreasePlayerHealt!=null)
+        if(OnChangePlayerHealt!=null)
         {
-          OnDecreasePlayerHealt();
+          OnChangePlayerHealt();
         }
         }    
     }
@@ -46,7 +49,13 @@ public class PlayerHealtHandler : MonoBehaviour
       else if(Instance!=null)
       {
         Destroy(this.gameObject);
-      }    
+      }
+     
+      playerStats = GetComponent<PlayerStats>();  
+      playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100;
+      playerHealt = playerMaxHealt;
+      
+    upgradeHealtStats = () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
     }
 
 

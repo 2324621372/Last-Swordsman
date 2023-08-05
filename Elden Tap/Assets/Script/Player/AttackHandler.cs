@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    public delegate void UpragdeWeapon();
-    public UpragdeWeapon upragdeWeapon;
+    public delegate void DelegateHandler();
+
+    public DelegateHandler upragdeWeapon;
+    public DelegateHandler checkStats;
+    public DelegateHandler upgradeStats;
+
     [SerializeField] private WeaponTypes weaponType;
     public WeaponTypes WeaponType
     {
@@ -16,12 +20,15 @@ public class AttackHandler : MonoBehaviour
         }    
     }
 
+    private PlayerStats playerStats;
     private float damage;
 
     void Awake() 
     {
        upragdeWeapon  += UpdateWeaponStats;
-       damage = WeaponType.damage;    
+       playerStats = GetComponent<PlayerStats>();
+       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+       upgradeStats = () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 
     void Update()
@@ -40,6 +47,6 @@ public class AttackHandler : MonoBehaviour
 
     private void UpdateWeaponStats()
     {
-      damage = WeaponType.damage;
+      damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 }
