@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyHealtHandler : MonoBehaviour
 {
  public delegate void EventHandler();
- public event EventHandler OnEnemyDecreaseHealt;
+ public event EventHandler OnEnemyChangeHealt;
  public event EventHandler OnEnemyDeath;
  
 
  [SerializeField] EnemyTypes enemyType;
   private float dropMoney;
   public float EnemyMaxHealt;
+  private float time;
 
   private float enemyHealt;
   public float EnemyHealt
@@ -21,34 +22,55 @@ public class EnemyHealtHandler : MonoBehaviour
     {
     enemyHealt = value; 
     if(enemyHealt<=0)
-    {
-      enemyHealt = 0;
-     Destroy(this.gameObject);
-     if(OnEnemyDeath !=null)
-     {
-      if(OnEnemyDecreaseHealt !=null)
       {
-      OnEnemyDecreaseHealt = null;
+        GetComponent<EnemyAttack>().enabled = false;
+        enemyHealt = 0;
+
+        StartCoroutine(DyingPorcess());
       }
-      MoneyManager.Instance.IncreaseMoney(dropMoney);
-      OnEnemyDeath();
-     }
-    }
     else
     {
-      if(OnEnemyDecreaseHealt !=null)
-      OnEnemyDecreaseHealt();
+      if(OnEnemyChangeHealt !=null)
+      OnEnemyChangeHealt();
     }
     }  
   }
-  
- void OnEnable() 
+
+    IEnumerator DyingPorcess()
+    {
+        
+        OnEnemyChangeHealt();
+        time += Time.deltaTime;
+        float changingSpeed = 0;
+        
+        float transparency = 255f;
+        while(changingSpeed<1)
+        {
+          changingSpeed += time*3f;
+         transparency = Mathf.Lerp(transparency, 0, changingSpeed);
+         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, transparency); 
+         yield return new WaitForEndOfFrame();
+        }
+
+
+        if (OnEnemyChangeHealt != null)
+        {
+          OnEnemyChangeHealt = null;
+          MoneyManager.Instance.IncreaseMoney(dropMoney);
+          OnEnemyDeath();
+        }
+
+        Destroy(this.gameObject);
+
+    }
+
+  void OnEnable() 
  {
    if(enemyType==null){Debug.LogWarning("Enemy Type is null! Please look the gameObject"); return;}
    EnemyHealt = enemyType.enemyHealt; 
    EnemyMaxHealt = enemyType.enemyMaxHealt;
    dropMoney = enemyType.dropMoney;
-     
+   FindObjectOfType<EnemyHealtBar>().SetUpBar();
  }
 
   public void DecreaseEnemyHealt(float reciviedDamage)

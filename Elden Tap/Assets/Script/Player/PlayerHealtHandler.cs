@@ -6,9 +6,10 @@ public class PlayerHealtHandler : MonoBehaviour
 {
    public static PlayerHealtHandler Instance;
    
-   public delegate void DelegateHandler();
-   public event DelegateHandler OnChangePlayerHealt;
-   public  DelegateHandler upgradeHealtStats;
+   public delegate void EventHandler();
+   public event EventHandler OnChangePlayerHealt;
+   public event EventHandler OnPlayerDeath;
+   public EventHandler upgradeHealtStats; // Yeah, I know name is EventHandler but this is not a event :)
     
 
     PlayerStats playerStats;
@@ -28,7 +29,10 @@ public class PlayerHealtHandler : MonoBehaviour
         }
        else if(playerHealt<=0)
         {
-          Debug.Log("You Died");
+          if(OnPlayerDeath != null)
+          {
+            OnPlayerDeath();
+          }
         }
         
         if(OnChangePlayerHealt!=null)
@@ -36,6 +40,20 @@ public class PlayerHealtHandler : MonoBehaviour
           OnChangePlayerHealt();
         }
         }    
+    }
+
+    private int maxHealtFlaskNumber = 3;
+    // public int MaxHealtFlaskNumber
+    // {
+    //   get{return maxHealtFlaskNumber;}
+    // }
+
+
+    private int currentHealtFlaskNumber;
+    public int CurrentHealtFlaskNumber
+    {
+      get{return currentHealtFlaskNumber;}
+      
     }
     
 
@@ -54,6 +72,7 @@ public class PlayerHealtHandler : MonoBehaviour
       playerStats = GetComponent<PlayerStats>();  
       playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100;
       playerHealt = playerMaxHealt;
+      currentHealtFlaskNumber = maxHealtFlaskNumber;
       
     upgradeHealtStats = () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
     }
@@ -62,5 +81,21 @@ public class PlayerHealtHandler : MonoBehaviour
     public void DecreaseHealt(float takenDamage)
     {
        PlayerHealt-=takenDamage;
+    }
+
+    public void DecreaseFlask()
+    {
+      if(currentHealtFlaskNumber>0)
+      {
+        currentHealtFlaskNumber--;
+        PlayerHealt += 50;
+        GetComponentInChildren<ParticleSystem>().Play();
+      }
+    }
+
+    public void UpdateHealtStats() //This method will called in scene changes.
+    {
+      PlayerHealt = PlayerMaxHealt;
+      currentHealtFlaskNumber = maxHealtFlaskNumber;
     }
 }

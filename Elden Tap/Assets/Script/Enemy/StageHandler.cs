@@ -46,7 +46,6 @@ public class StageHandler : MonoBehaviour
        }
        else
        {
-         Debug.Log("a");
           VictoryCanvas.SetActive(true);
        }
     }

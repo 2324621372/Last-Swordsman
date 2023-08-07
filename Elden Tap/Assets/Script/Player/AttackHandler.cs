@@ -10,6 +10,11 @@ public class AttackHandler : MonoBehaviour
     public DelegateHandler checkStats;
     public DelegateHandler upgradeStats;
 
+    [SerializeField] GameObject bomb;
+
+    private int bombNumber = 3;
+    public int BombNumber {get{return bombNumber;} set{bombNumber = value;}}
+
     [SerializeField] private WeaponTypes weaponType;
     public WeaponTypes WeaponType
     {
@@ -33,7 +38,7 @@ public class AttackHandler : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)&&FindObjectOfType<EnemyHealtHandler>())
+        if(Input.GetMouseButtonDown(0)&&FindObjectOfType<EnemyAttack>())
         {
             AttackStage();
         }
@@ -48,5 +53,15 @@ public class AttackHandler : MonoBehaviour
     private void UpdateWeaponStats()
     {
       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+    }
+
+    public void ThrowBomb()
+    {
+      if(BombNumber>0)
+      {
+      BombNumber--;   
+      Instantiate(bomb,gameObject.transform.position, Quaternion.identity);
+      }
+
     }
 }

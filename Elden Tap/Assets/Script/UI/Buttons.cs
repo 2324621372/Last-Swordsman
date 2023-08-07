@@ -7,12 +7,13 @@ public class Buttons : MonoBehaviour
 {
   public void GoToShrine()
   {
-    PlayerHealtHandler.Instance.PlayerHealt = PlayerHealtHandler.Instance.PlayerMaxHealt;
+    PlayerHealtHandler.Instance.UpdateHealtStats();
     SceneManager.LoadScene("Shrine");
   }
 
   public void GoToPrototyoeLevel()
   {
+    PlayerHealtHandler.Instance.UpdateHealtStats();
     SceneManager.LoadScene(0);
   }
 

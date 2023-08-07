@@ -12,44 +12,52 @@ public class EnemyHealtBar : MonoBehaviour
     TextMeshProUGUI enemyHealtNumber;
     StageHandler stageHandler;
     void Start()
-    {   enemyHealtNumber = GetComponentInChildren<TextMeshProUGUI>();
+    {   
+        enemyHealtNumber = GetComponentInChildren<TextMeshProUGUI>();
         enemyHealtBarSlider = GetComponent<Slider>();
         stageHandler= FindObjectOfType<StageHandler>();
-
-
+  
+        if(FindObjectOfType<EnemyHealtHandler>() != null)
         SetUpBar();
-        FindObjectOfType<EnemyHealtHandler>().OnEnemyDecreaseHealt += SetUpBar;
+        else{Debug.Log("aa");}
+        FindObjectOfType<EnemyHealtHandler>().OnEnemyChangeHealt += SetUpBar;
         stageHandler.newEnemyEvent += SetEventAgain;
     }
 
-    private void SetUpBar()
+    public void SetUpBar()
     {
         enemyHealt = FindObjectOfType<EnemyHealtHandler>().EnemyHealt;
         enemyMaxHealt = FindObjectOfType<EnemyHealtHandler>().EnemyMaxHealt;
         enemyHealtBarSlider.value = enemyHealt;
         enemyHealtBarSlider.maxValue = enemyMaxHealt;
         enemyHealtNumber.text = $"{enemyHealt}/{enemyMaxHealt}";
+        enemyHealtBarSlider.value = enemyHealt;
     }
 
     private void SetEventAgain()
     {
-         if (stageHandler != null && stageHandler.enemies.Count > 0)
-    {
-        foreach (var enemy in stageHandler.enemies)
+        if (stageHandler != null && stageHandler.enemies.Count > 0)
         {
-            var enemyHealthHandler = enemy.GetComponent<EnemyHealtHandler>();
-            if (enemyHealthHandler != null)
+           foreach (var enemy in stageHandler.enemies)
             {
-                enemyHealthHandler.OnEnemyDecreaseHealt -= SetUpBar;
-                enemyHealthHandler.OnEnemyDecreaseHealt += SetUpBar;
-                enemyHealt = FindObjectOfType<EnemyHealtHandler>().EnemyHealt;
-                enemyMaxHealt = FindObjectOfType<EnemyHealtHandler>().EnemyMaxHealt;
-                enemyHealtBarSlider.value = enemyHealt;
-                enemyHealtBarSlider.maxValue = enemyMaxHealt;
-                enemyHealtNumber.text = $"{enemyHealt}/{enemyMaxHealt}";
+                StartCoroutine(SetNewEnemyBar(enemy));
             }
         }
     }
+
+    IEnumerator SetNewEnemyBar (GameObject enemy)
+    {
+    if (enemy != null)
+    {
+        var enemyHealthHandler = enemy.GetComponent<EnemyHealtHandler>();
+        if (enemyHealthHandler != null)
+        {
+            enemyHealthHandler.OnEnemyChangeHealt -= SetUpBar;
+            enemyHealthHandler.OnEnemyChangeHealt += SetUpBar;
+             
+        }
     }
 
+    yield return new WaitForSeconds(0.1f);
+    }
 }

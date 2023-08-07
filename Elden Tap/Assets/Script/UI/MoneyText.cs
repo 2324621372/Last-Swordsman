@@ -16,8 +16,7 @@ public class MoneyText : MonoBehaviour
 
     void UpdateText()
     {
-        moneyTxt.text = MoneyManager.Instance.CurrentMoney.ToString();
-        Debug.Log(MoneyManager.Instance.CurrentMoney.ToString());
+        moneyTxt.text = MoneyManager.Instance.CurrentMoney.ToString();;
     }
 
 }

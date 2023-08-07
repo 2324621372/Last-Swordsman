@@ -22,7 +22,6 @@ public class MoneyManager : MonoBehaviour
           if(setMoney!=null)
           setMoney();
 
-          Debug.Log(CurrentMoney);
         }
     }
     void Awake()
