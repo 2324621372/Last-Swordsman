@@ -9,25 +9,24 @@ public class UpragdeStats : MonoBehaviour
   private event OnDelegateHandler changeUI;
 
   [SerializeField] TextMeshProUGUI healtLVL;
+  [SerializeField] TextMeshProUGUI manaLVL;
   [SerializeField] TextMeshProUGUI strenghtLVL;
   [SerializeField] TextMeshProUGUI costText;
   
   
   private float cost = 0;
   PlayerStats playerStats;
-  int currentHealtLevel;
-  int currentStrengthLevel;
+
   
 
    private void OnEnable()
    {
      playerStats = FindObjectOfType<PlayerStats>();
-     changeUI += ()=> {costText.text = cost.ToString();};
-     
-     currentHealtLevel = playerStats.HealtLevel;
-     currentStrengthLevel =playerStats.StrenghtLevel;
-     healtLVL.text = currentHealtLevel.ToString();
-     strenghtLVL.text = currentStrengthLevel.ToString();
+     changeUI += ()=> {costText.text =  $"Cost: {cost}";};
+
+     healtLVL.text = playerStats.HealtLevel.ToString();
+     strenghtLVL.text = playerStats.StrenghtLevel.ToString();
+     manaLVL.text = playerStats .ManaLevel.ToString();
      costText.text = $"Cost: {cost}";
      changeUI();
    }
@@ -52,6 +51,7 @@ public class UpragdeStats : MonoBehaviour
       MoneyManager.Instance.CurrentMoney -= cost;
       playerStats.HealtLevel = int.Parse(healtLVL.text);
       playerStats.StrenghtLevel = int.Parse(strenghtLVL.text);
+      playerStats.ManaLevel = int.Parse(manaLVL.text);
       cost = 0;
       changeUI();
     }    

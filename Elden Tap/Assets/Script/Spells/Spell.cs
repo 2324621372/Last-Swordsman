@@ -2,26 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Spell : MonoBehaviour
 {
-    [SerializeField] GameObject bombVFX; //Particle System
-    [SerializeField] float duration = 1f;
-    [SerializeField] float damage = 100;
+    [SerializeField] ISpellTypes spellTypes;
+    public ISpellTypes SpellTypes{get{return spellTypes;}}
 
+    [SerializeField] GameObject spellVFX; //Particle System
+    [SerializeField] float duration = 1f;
+
+
+     private float damage;
+     public float Damage{get{return damage;}}
+
+     private float manaCost;
+     public float ManaCost{get{return manaCost;}}
+     
      Vector3 startPosition;
      EnemyAttack enemyAttack;
      float percantage;
      float elepsedTime;
+
    private void Start()
    {
+     damage = spellTypes.spellDamage;
+     manaCost = spellTypes.spellManaCost;
      enemyAttack = FindObjectOfType<EnemyAttack>();
      startPosition = gameObject.transform.position;
    }
 
    private void Update() 
    {
-     if(enemyAttack == null) {return;}
-      elepsedTime += Time.deltaTime;
+     if(enemyAttack == null) {Destroy(this.gameObject);}
+     elepsedTime += Time.deltaTime;
      percantage = elepsedTime / duration;
      
      transform.position = Vector3.Lerp(startPosition, enemyAttack.gameObject.transform.position, percantage);  
@@ -32,7 +44,7 @@ public class Bomb : MonoBehaviour
      if(other.gameObject.CompareTag("Enemy"))
      {
         other.gameObject.GetComponent<EnemyHealtHandler>().DecreaseEnemyHealt(damage);
-        Instantiate(bombVFX, transform.position, Quaternion.identity);
+        Instantiate(spellVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
      } 
    }

@@ -9,11 +9,6 @@ public class AttackHandler : MonoBehaviour
     public DelegateHandler upragdeWeapon;
     public DelegateHandler checkStats;
 
-    [SerializeField] GameObject bomb;
-
-    private int bombNumber = 3;
-    public int BombNumber {get{return bombNumber;} set{bombNumber = value;}}
-
     [SerializeField] private WeaponTypes weaponType;
     public WeaponTypes WeaponType
     {
@@ -32,7 +27,7 @@ public class AttackHandler : MonoBehaviour
        upragdeWeapon  += UpdateWeaponStats;
        playerStats = GetComponent<PlayerStats>();
        damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
-       playerStats.changeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+       playerStats.OnChangeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 
     void Update()
@@ -54,13 +49,12 @@ public class AttackHandler : MonoBehaviour
       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 
-    public void ThrowFire()
+    public void ThrowSpell(Spell spell, float manaCost)
     {
-      if(BombNumber>0 && FindObjectOfType<EnemyHealtHandler>() != null)
+      if(PlayerManaHandler.Instance.PlayerCurrentMana>=manaCost && FindObjectOfType<EnemyHealtHandler>() != null)
       {
-      BombNumber--;   
-      Instantiate(bomb,gameObject.transform.position, Quaternion.identity);
+       Instantiate(spell.gameObject,gameObject.transform.position, Quaternion.identity);
+       PlayerManaHandler.Instance.DecreaseMana(manaCost);
       }
-
     }
 }

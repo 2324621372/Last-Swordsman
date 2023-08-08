@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
 
   public delegate void OnEventHandler();
-  public event OnEventHandler changeStats;
+  public event OnEventHandler OnChangeStats;
 
 
 
@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
   set
   {
     healtLevel = value;
-    changeStats();
+    OnChangeStats();
   }
   }
 
@@ -24,12 +24,12 @@ public class PlayerStats : MonoBehaviour
   set
   {
     manaLevel = value;
-    changeStats();
+    OnChangeStats();
   }
   }
   
   private int strenghtLevel = 1;
-  public int StrenghtLevel{get{return strenghtLevel;} set {strenghtLevel = value; changeStats();}}
+  public int StrenghtLevel{get{return strenghtLevel;} set {strenghtLevel = value; OnChangeStats();}}
 
 
 }

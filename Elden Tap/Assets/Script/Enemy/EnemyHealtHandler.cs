@@ -76,8 +76,11 @@ public class EnemyHealtHandler : MonoBehaviour
 
   public void DecreaseEnemyHealt(float reciviedDamage)
  {
-   EnemyHealt -= reciviedDamage; 
+   EnemyHealt -= reciviedDamage;
+   if(reciviedDamage<enemyHealt || enemyHealt == null || enemyHealt == 0)
    damagePopUp.CreateText(gameObject.transform, reciviedDamage);
+   else
+   damagePopUp.CreateText(gameObject.transform, enemyHealt);
  }    
 
 }

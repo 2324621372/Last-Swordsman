@@ -7,13 +7,15 @@ public class Buttons : MonoBehaviour
 {
   public void GoToShrine()
   {
-    PlayerHealtHandler.Instance.UpdateHealtStats();
+    PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
+    PlayerManaHandler.Instance.UpdateManaStatsInSceneChange();
     SceneManager.LoadScene("Shrine");
   }
 
   public void GoToPrototyoeLevel()
   {
-    PlayerHealtHandler.Instance.UpdateHealtStats();
+    PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
+    PlayerManaHandler.Instance.UpdateManaStatsInSceneChange();
     SceneManager.LoadScene(0);
   }
 

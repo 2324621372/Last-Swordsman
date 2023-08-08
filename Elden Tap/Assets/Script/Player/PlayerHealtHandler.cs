@@ -10,6 +10,7 @@ public class PlayerHealtHandler : MonoBehaviour
    public event EventHandler OnChangePlayerHealt;
    public event EventHandler OnPlayerDeath;
     
+   [SerializeField] ParticleSystem healtVfx;  
 
     PlayerStats playerStats;
 
@@ -42,10 +43,6 @@ public class PlayerHealtHandler : MonoBehaviour
     }
 
     private int maxHealtFlaskNumber = 3;
-    // public int MaxHealtFlaskNumber
-    // {
-    //   get{return maxHealtFlaskNumber;}
-    // }
 
 
     private int currentHealtFlaskNumber;
@@ -73,7 +70,7 @@ public class PlayerHealtHandler : MonoBehaviour
       playerHealt = playerMaxHealt;
       currentHealtFlaskNumber = maxHealtFlaskNumber;
       
-    playerStats.changeStats += () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
+    playerStats.OnChangeStats += () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
     }
 
 
@@ -82,17 +79,17 @@ public class PlayerHealtHandler : MonoBehaviour
        PlayerHealt-=takenDamage;
     }
 
-    public void DecreaseFlask()
+    public void DrinkFlask()
     {
       if(currentHealtFlaskNumber>0)
       {
         currentHealtFlaskNumber--;
         PlayerHealt += 50;
-        GetComponentInChildren<ParticleSystem>().Play();
+        healtVfx.Play();
       }
     }
 
-    public void UpdateHealtStats() //This method will called in scene changes.
+    public void UpdateHealtStatsInSceneChange() //This method will called in scene changes.
     {
       PlayerHealt = PlayerMaxHealt;
       currentHealtFlaskNumber = maxHealtFlaskNumber;

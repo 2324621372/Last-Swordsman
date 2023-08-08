@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8445554240506832402}
   - component: {fileID: -5864010880490627018}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: FireBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83dd608b8388a94f9ac983031217c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombVFX: {fileID: 2030710094463502418, guid: 2f5a92cc3c04d06429a926b2a2867647, type: 3}
+  spellTypes: {fileID: 11400000, guid: 31b708211b68b0645b03eb4ece288d36, type: 2}
+  spellVFX: {fileID: 2030710094463502418, guid: 2f5a92cc3c04d06429a926b2a2867647, type: 3}
   duration: 0.5
-  damage: 100
 --- !u!58 &8445554240506832402
 CircleCollider2D:
   m_ObjectHideFlags: 0
