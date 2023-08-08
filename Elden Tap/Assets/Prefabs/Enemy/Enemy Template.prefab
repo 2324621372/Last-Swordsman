@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: {fileID: 11400000, guid: 89f391f779f65ca4fa8fc77655d27b8d, type: 2}
+  damagePopUp: {fileID: 2494040832536457119, guid: e7dbcbc62721ba543bb70c8ed5048b5c, type: 3}
   EnemyMaxHealt: 0
 --- !u!61 &-3942011783757780157
 BoxCollider2D:

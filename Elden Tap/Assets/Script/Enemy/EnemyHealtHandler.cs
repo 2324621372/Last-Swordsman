@@ -10,6 +10,7 @@ public class EnemyHealtHandler : MonoBehaviour
  
 
  [SerializeField] EnemyTypes enemyType;
+ [SerializeField] PopUpScript damagePopUp;
   private float dropMoney;
   public float EnemyMaxHealt;
   private float time;
@@ -46,7 +47,7 @@ public class EnemyHealtHandler : MonoBehaviour
         float transparency = 255f;
         while(changingSpeed<1)
         {
-          changingSpeed += time*3f;
+          changingSpeed += time*2f;
          transparency = Mathf.Lerp(transparency, 0, changingSpeed);
          GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, transparency); 
          yield return new WaitForEndOfFrame();
@@ -76,6 +77,7 @@ public class EnemyHealtHandler : MonoBehaviour
   public void DecreaseEnemyHealt(float reciviedDamage)
  {
    EnemyHealt -= reciviedDamage; 
+   damagePopUp.CreateText(gameObject.transform, reciviedDamage);
  }    
 
 }

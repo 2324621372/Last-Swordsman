@@ -5,22 +5,31 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-  Stats stats = new Stats();
+  public delegate void OnEventHandler();
+  public event OnEventHandler changeStats;
 
-  private int healtLevel;
-  public int HealtLevel{get{return healtLevel;} set{healtLevel = value;}}
+
+
+  private int healtLevel = 1;
+  public int HealtLevel{get{return healtLevel;} 
+  set
+  {
+    healtLevel = value;
+    changeStats();
+  }
+  }
+
+  private int manaLevel = 1;
+  public int ManaLevel{get{return manaLevel;} 
+  set
+  {
+    manaLevel = value;
+    changeStats();
+  }
+  }
   
-  private int strenghtLevel;
-  public int StrenghtLevel{get{return strenghtLevel;} set {strenghtLevel = value;}}
+  private int strenghtLevel = 1;
+  public int StrenghtLevel{get{return strenghtLevel;} set {strenghtLevel = value; changeStats();}}
 
-   private void Awake()
-    {
-        healtLevel = stats.healtLevel;
-        strenghtLevel = stats.strenghtLevel;
-    }
 
-    public void SetUpStats()
-    {
-
-    }
 }

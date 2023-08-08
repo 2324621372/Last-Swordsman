@@ -17,7 +17,7 @@ public class BombButton : MonoBehaviour
 
    public void ThrowBombButton()
     {
-      attackHandler.ThrowBomb();
+      attackHandler.ThrowFire();
       bombText.text = attackHandler.BombNumber.ToString();
     }
 }

@@ -9,7 +9,6 @@ public class PlayerHealtHandler : MonoBehaviour
    public delegate void EventHandler();
    public event EventHandler OnChangePlayerHealt;
    public event EventHandler OnPlayerDeath;
-   public EventHandler upgradeHealtStats; // Yeah, I know name is EventHandler but this is not a event :)
     
 
     PlayerStats playerStats;
@@ -74,7 +73,7 @@ public class PlayerHealtHandler : MonoBehaviour
       playerHealt = playerMaxHealt;
       currentHealtFlaskNumber = maxHealtFlaskNumber;
       
-    upgradeHealtStats = () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
+    playerStats.changeStats += () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
     }
 
 

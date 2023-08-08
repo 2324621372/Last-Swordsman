@@ -52,9 +52,6 @@ public class UpragdeStats : MonoBehaviour
       MoneyManager.Instance.CurrentMoney -= cost;
       playerStats.HealtLevel = int.Parse(healtLVL.text);
       playerStats.StrenghtLevel = int.Parse(strenghtLVL.text);
-      Debug.Log(playerStats.StrenghtLevel);
-      FindObjectOfType<AttackHandler>().upgradeStats();
-      FindObjectOfType<PlayerHealtHandler>().upgradeHealtStats();
       cost = 0;
       changeUI();
     }    

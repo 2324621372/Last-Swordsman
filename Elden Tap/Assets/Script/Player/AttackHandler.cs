@@ -8,7 +8,6 @@ public class AttackHandler : MonoBehaviour
 
     public DelegateHandler upragdeWeapon;
     public DelegateHandler checkStats;
-    public DelegateHandler upgradeStats;
 
     [SerializeField] GameObject bomb;
 
@@ -33,7 +32,7 @@ public class AttackHandler : MonoBehaviour
        upragdeWeapon  += UpdateWeaponStats;
        playerStats = GetComponent<PlayerStats>();
        damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
-       upgradeStats = () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+       playerStats.changeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 
     void Update()
@@ -55,9 +54,9 @@ public class AttackHandler : MonoBehaviour
       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
     }
 
-    public void ThrowBomb()
+    public void ThrowFire()
     {
-      if(BombNumber>0)
+      if(BombNumber>0 && FindObjectOfType<EnemyHealtHandler>() != null)
       {
       BombNumber--;   
       Instantiate(bomb,gameObject.transform.position, Quaternion.identity);
