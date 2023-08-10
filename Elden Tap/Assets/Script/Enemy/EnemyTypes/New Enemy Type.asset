@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b2194ed1d5bfd84d94a7bdfa4264be3, type: 3}
-  m_Name: Skeleton
+  m_Name: New Enemy Type
   m_EditorClassIdentifier: 
-  enemyName: Skeleton
-  enemyHealt: 100
-  enemyMaxHealt: 100
-  enemyDamage: 10
-  dropMoney: 10
-  hitFrequency: 5
+  enemyName: Heavy Bandit
+  enemyHealt: 150
+  enemyMaxHealt: 150
+  enemyDamage: 15
+  dropMoney: 15
+  hitFrequency: 2
