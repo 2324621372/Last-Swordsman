@@ -16,7 +16,7 @@ public class Buttons : MonoBehaviour
   {
     PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
     PlayerManaHandler.Instance.UpdateManaStatsInSceneChange();
-    SceneManager.LoadScene(0);
+    SceneManager.LoadScene(1);
   }
 
 }

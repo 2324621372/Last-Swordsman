@@ -32,7 +32,8 @@ public class PlayerManaHandler : MonoBehaviour
     }
    }
    
-   public int maxManaFlask = 3;
+   private int maxManaFlask;
+   public int MaxManaFlask{get{return maxManaFlask;} set{maxManaFlask = value;}}
 
    private int currentManaFlask;
    public int CurrentManaFlask{get{return currentManaFlask;}}
@@ -49,7 +50,8 @@ public class PlayerManaHandler : MonoBehaviour
         }
 
         playerStats = GetComponent<PlayerStats>();
-
+        
+        maxManaFlask=3;
         currentManaFlask = maxManaFlask;
 
         playerMaxMana = ((playerStats.ManaLevel-1)*10)+100;
@@ -70,6 +72,11 @@ public class PlayerManaHandler : MonoBehaviour
       PlayerCurrentMana += 40;
       manaVFX.Play();
      }
+   }
+
+   public void IncreaseFlaskNumber()
+   {
+    MaxManaFlask++;
    }
 
     public void UpdateManaStatsInSceneChange() //This method will called in scene changes.

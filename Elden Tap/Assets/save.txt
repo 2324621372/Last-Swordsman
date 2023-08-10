@@ -1,0 +1,1 @@
+{"playerStats":{"instanceID":-1260},"healtLevel":1,"manaLevel":1,"strenghtLevel":1,"moneyManager":{"instanceID":-1258},"currentMoney":0.0,"playerManaHandler":{"instanceID":-1262},"maxManaFlask":3,"playerHealtHandler":{"instanceID":-1256},"maxHealtFlaskNumber":3}

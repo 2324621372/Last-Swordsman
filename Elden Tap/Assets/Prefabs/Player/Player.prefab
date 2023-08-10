@@ -4931,6 +4931,7 @@ GameObject:
   - component: {fileID: 8518558385609066320}
   - component: {fileID: 1090518922254685125}
   - component: {fileID: -6422401654095130425}
+  - component: {fileID: 7623962604077424403}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5019,7 +5020,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaVFX: {fileID: 5791943484914024994}
-  maxManaFlask: 3
+--- !u!114 &7623962604077424403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258959089499546572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9924d07dba51943b2f40bcaa797708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4797876995339242970
 GameObject:
   m_ObjectHideFlags: 0

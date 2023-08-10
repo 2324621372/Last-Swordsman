@@ -6,6 +6,11 @@ using TMPro;
 public class Flaskes : MonoBehaviour
 {
 
+  private void Start()
+  {
+    GetComponentInChildren<TextMeshProUGUI>().text= PlayerHealtHandler.Instance.MaxHealtFlaskNumber.ToString(); // The flask numbers same with mana and healt when the game start so it doesnt relly matter.
+  }
+
  public void DrinkHealtFlask()
   {
     PlayerHealtHandler.Instance.DrinkFlask();
@@ -15,7 +20,6 @@ public class Flaskes : MonoBehaviour
   public void DrinkManaFlask()
   {
     PlayerManaHandler.Instance.DrinkManaFlask();
-    Debug.Log( PlayerManaHandler.Instance.CurrentManaFlask);
     GetComponentInChildren<TextMeshProUGUI>().text = PlayerManaHandler.Instance.CurrentManaFlask.ToString();
   }
 }

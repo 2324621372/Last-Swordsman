@@ -42,14 +42,25 @@ public class PlayerHealtHandler : MonoBehaviour
         }    
     }
 
-    private int maxHealtFlaskNumber = 3;
-
+    private int maxHealtFlaskNumber;
+    public int MaxHealtFlaskNumber
+    {
+      get{return maxHealtFlaskNumber;}
+      set{maxHealtFlaskNumber = value;}
+    }
 
     private int currentHealtFlaskNumber;
     public int CurrentHealtFlaskNumber
     {
       get{return currentHealtFlaskNumber;}
-      
+      set
+      {
+        currentHealtFlaskNumber = value;
+        if(currentHealtFlaskNumber>maxHealtFlaskNumber)
+        {
+          currentHealtFlaskNumber = maxHealtFlaskNumber;
+        }
+      }
     }
     
 
@@ -68,6 +79,7 @@ public class PlayerHealtHandler : MonoBehaviour
       playerStats = GetComponent<PlayerStats>();  
       playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100;
       playerHealt = playerMaxHealt;
+      MaxHealtFlaskNumber = 3;
       currentHealtFlaskNumber = maxHealtFlaskNumber;
       
     playerStats.OnChangeStats += () =>  playerMaxHealt = ((playerStats.HealtLevel-1)*10) +100; 
@@ -88,6 +100,11 @@ public class PlayerHealtHandler : MonoBehaviour
         healtVfx.Play();
       }
     }
+
+   public void IncreaseFlaskNumber()
+   {
+    MaxHealtFlaskNumber++;
+   }
 
     public void UpdateHealtStatsInSceneChange() //This method will called in scene changes.
     {
