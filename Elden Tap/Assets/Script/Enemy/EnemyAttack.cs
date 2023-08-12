@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator AttackThePlayer()
     {
         PlayerHealtHandler.Instance.DecreaseHealt(enemyDamage);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(hitFrequency);
         onAttack();
     }
 }

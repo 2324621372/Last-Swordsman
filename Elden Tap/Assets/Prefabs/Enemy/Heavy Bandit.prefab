@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3819793503903971398}
   - component: {fileID: -7895465922389305167}
   - component: {fileID: -3942011783757780157}
-  - component: {fileID: 975008671377676535}
+  - component: {fileID: 3999007687737034558}
   m_Layer: 0
   m_Name: Heavy Bandit
   m_TagString: Enemy
@@ -142,19 +142,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!111 &975008671377676535
-Animation:
+--- !u!95 &3999007687737034558
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096575635618489081}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 9681041169dffab4f975b055976010cb, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9681041169dffab4f975b055976010cb, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c3380fa3b2051e43994f10496391ca8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

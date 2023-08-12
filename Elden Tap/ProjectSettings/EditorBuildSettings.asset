@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Shrine.unity
     guid: 92ea5e10ed318f0489ab27e729670fae
   - enabled: 1
-    path: Assets/Scenes/The Forrest.unity
+    path: Assets/Scenes/The Forest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/The Church.unity
+    guid: 1c8132e06e1ae5241a6f8ba087d94767
+  - enabled: 1
+    path: Assets/Scenes/The Graveyard.unity
+    guid: 4d470b5382cb4e642ac19dad622d8cec
   m_configObjects: {}

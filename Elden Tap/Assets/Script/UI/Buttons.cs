@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Buttons : MonoBehaviour
 {
+
+  [SerializeField] int sceneNumber;
   public void GoToShrine()
   {
     PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
@@ -16,7 +19,8 @@ public class Buttons : MonoBehaviour
   {
     PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
     PlayerManaHandler.Instance.UpdateManaStatsInSceneChange();
-    SceneManager.LoadScene(1);
+    SceneManager.LoadScene(sceneNumber);
   }
+
 
 }
