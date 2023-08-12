@@ -33,6 +33,7 @@ public class PlayerHealtHandler : MonoBehaviour
           {
             OnPlayerDeath();
           }
+          MoneyManager.Instance.CurrentMoney = 0;
         }
         
         if(OnChangePlayerHealt!=null)

@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Ghost
   enemyHealt: 400
   enemyMaxHealt: 400
-  enemyDamage: 25
+  enemyDamage: 30
   dropMoney: 50
-  hitFrequency: 2
+  hitFrequency: 1.5

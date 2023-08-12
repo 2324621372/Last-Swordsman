@@ -7,11 +7,14 @@ public class YouDiedCanvas : MonoBehaviour
     [SerializeField] GameObject youDiedCanvas;
     void Start()
     {
-    
+      PlayerHealtHandler.Instance.OnPlayerDeath += YouDiedCanvasOpener;
     }
 
     void YouDiedCanvasOpener()
     {
-      youDiedCanvas.SetActive(true);        
+      Time.timeScale = 0;
+      youDiedCanvas.SetActive(true);
+      FindObjectOfType<AttackHandler>().enabled = false;
+      PlayerHealtHandler.Instance.OnPlayerDeath -= YouDiedCanvasOpener;     
     }
 }

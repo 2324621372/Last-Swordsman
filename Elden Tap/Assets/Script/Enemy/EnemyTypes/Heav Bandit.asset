@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Heavy Bandit
   enemyHealt: 150
   enemyMaxHealt: 150
-  enemyDamage: 15
+  enemyDamage: 20
   dropMoney: 15
   hitFrequency: 2

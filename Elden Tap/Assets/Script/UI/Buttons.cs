@@ -12,6 +12,8 @@ public class Buttons : MonoBehaviour
   {
     PlayerHealtHandler.Instance.UpdateHealtStatsInSceneChange();
     PlayerManaHandler.Instance.UpdateManaStatsInSceneChange();
+    Time.timeScale =1;
+    FindObjectOfType<AttackHandler>().enabled = true; 
     SceneManager.LoadScene("Shrine");
   }
 

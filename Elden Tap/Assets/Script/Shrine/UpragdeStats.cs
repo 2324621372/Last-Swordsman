@@ -46,7 +46,7 @@ public class UpragdeStats : MonoBehaviour
 
    public void BuyIt()
    {
-    if(MoneyManager.Instance.CurrentMoney>cost)
+    if(MoneyManager.Instance.CurrentMoney>=cost)
     {
       MoneyManager.Instance.CurrentMoney -= cost;
       playerStats.HealtLevel = int.Parse(healtLVL.text);

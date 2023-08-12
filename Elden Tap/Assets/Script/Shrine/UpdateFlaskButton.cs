@@ -21,7 +21,7 @@ public class UpdateFlaskButton : MonoBehaviour
      MoneyManager.Instance.CurrentMoney -= cost;
      PlayerManaHandler.Instance.IncreaseFlaskNumber();
      PlayerHealtHandler.Instance.IncreaseFlaskNumber();
-     cost = (PlayerManaHandler.Instance.MaxManaFlask-2)*1000;
+     cost = (PlayerManaHandler.Instance.MaxManaFlask-2)*2000;
      costText.text = cost.ToString();
      }
    }

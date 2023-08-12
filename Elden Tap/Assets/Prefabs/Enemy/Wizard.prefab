@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027facfb742967b4cb7e74caf001d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes: {fileID: 11400000, guid: 89f391f779f65ca4fa8fc77655d27b8d, type: 2}
+  enemyTypes: {fileID: 11400000, guid: f6da74f627e0cfe4a93f47e21950b60c, type: 2}
 --- !u!114 &-7895465922389305167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c404aca165b4641add176af7819d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: {fileID: 11400000, guid: 89f391f779f65ca4fa8fc77655d27b8d, type: 2}
+  enemyType: {fileID: 11400000, guid: f6da74f627e0cfe4a93f47e21950b60c, type: 2}
   damagePopUp: {fileID: 2494040832536457119, guid: e7dbcbc62721ba543bb70c8ed5048b5c, type: 3}
   EnemyMaxHealt: 0
 --- !u!61 &-3942011783757780157

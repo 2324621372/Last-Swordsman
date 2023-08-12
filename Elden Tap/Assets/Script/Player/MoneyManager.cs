@@ -16,8 +16,8 @@ public class MoneyManager : MonoBehaviour
         set
         {
           currentMoney = value;
-          if(currentMoney>999999)
-          currentMoney = 999999;
+          if(currentMoney>99999999)
+          currentMoney = 99999999;
 
           if(setMoney!=null)
           setMoney();
