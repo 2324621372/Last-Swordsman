@@ -16,6 +16,7 @@ public class AttackHandler : MonoBehaviour
         set
         {
             weaponType = value;
+            UpdateWeaponStats();
         }    
     }
 
@@ -26,8 +27,8 @@ public class AttackHandler : MonoBehaviour
     {
        upragdeWeapon  += UpdateWeaponStats;
        playerStats = GetComponent<PlayerStats>();
-       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
-       playerStats.OnChangeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.currentDamage;
+       playerStats.OnChangeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.currentDamage;
     }
 
     void Update()
@@ -46,7 +47,7 @@ public class AttackHandler : MonoBehaviour
 
     private void UpdateWeaponStats()
     {
-      damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.damage;
+      damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.currentDamage;
     }
 
     public void ThrowSpell(Spell spell, float manaCost)

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mushroom Land.unity
     guid: 61081c4003240334ca8021949c511f13
+  - enabled: 1
+    path: Assets/Scenes/Swamp.unity
+    guid: 1bede25926f7f8d468b62d8904ade32b
   m_configObjects: {}

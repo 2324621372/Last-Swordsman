@@ -8,7 +8,7 @@ public class PlayerHealtHandler : MonoBehaviour
    
    public delegate void EventHandler();
    public event EventHandler OnChangePlayerHealt;
-   public event EventHandler OnPlayerDeath;
+   public EventHandler OnPlayerDeath;
     
    [SerializeField] ParticleSystem healtVfx;  
 
@@ -31,9 +31,15 @@ public class PlayerHealtHandler : MonoBehaviour
         {
           if(OnPlayerDeath != null)
           {
+            if(OnChangePlayerHealt!=null)
+            OnChangePlayerHealt();
+
             OnPlayerDeath();
           }
+
+            OnPlayerDeath = null;
           MoneyManager.Instance.CurrentMoney = 0;
+
         }
         
         if(OnChangePlayerHealt!=null)

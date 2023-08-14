@@ -15,6 +15,7 @@ public class Buttons : MonoBehaviour
     Time.timeScale =1;
     FindObjectOfType<AttackHandler>().enabled = true; 
     SceneManager.LoadScene("Shrine");
+    PlayerHealtHandler.Instance.OnPlayerDeath = null;
   }
 
   public void GoToPrototyoeLevel()

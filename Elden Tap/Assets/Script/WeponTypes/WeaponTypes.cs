@@ -6,7 +6,9 @@ using UnityEngine;
 public class WeaponTypes : ScriptableObject
 {
   public string weaponName;
-  public float damage;
+  public float startDamage;
+  public float currentDamage;
   public int currentLevel;
-  public const int maxLevel = 10;
+  public int maxLevel;
+  public int cost;
 }

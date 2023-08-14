@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fire Bomb
   m_EditorClassIdentifier: 
   spellName: Fire Bomb
-  spellDamage: 40
+  spellDamage: 30
   spellManaCost: 20

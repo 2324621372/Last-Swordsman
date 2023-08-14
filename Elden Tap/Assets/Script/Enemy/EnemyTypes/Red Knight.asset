@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Red Knight
   m_EditorClassIdentifier: 
   enemyName: Red Knight
-  enemyHealt: 4000
-  enemyMaxHealt: 2000
+  enemyHealt: 3000
+  enemyMaxHealt: 3000
   enemyDamage: 25
   dropMoney: 3000
   hitFrequency: 1

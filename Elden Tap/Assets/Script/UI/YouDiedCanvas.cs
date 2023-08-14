@@ -8,10 +8,12 @@ public class YouDiedCanvas : MonoBehaviour
     void Start()
     {
       PlayerHealtHandler.Instance.OnPlayerDeath += YouDiedCanvasOpener;
+      Debug.Log("a");
     }
 
     void YouDiedCanvasOpener()
     {
+       Debug.Log("a");
       Time.timeScale = 0;
       youDiedCanvas.SetActive(true);
       FindObjectOfType<AttackHandler>().enabled = false;
