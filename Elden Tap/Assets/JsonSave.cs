@@ -6,36 +6,13 @@ using UnityEngine;
 public class JsonSave : MonoBehaviour
 {
 
+  [SerializeField] WeaponTypes starterWeapon;
+
     private void Start()
     {
-      if(File.Exists((Application.persistentDataPath+"/save.txt")))
-      {
-        string saveFile =  File.ReadAllText(Application.persistentDataPath+"/save.txt");
-
-        JsonSaveFile jsonSaveFile= JsonUtility.FromJson<JsonSaveFile>(saveFile);
-
-        PlayerStats playerStats = GetComponent<PlayerStats>();
-
-        playerStats.HealtLevel = jsonSaveFile.healtLevel;
-        playerStats.ManaLevel = jsonSaveFile.manaLevel;
-        playerStats.StrenghtLevel = jsonSaveFile.strenghtLevel;
-
-        MoneyManager.Instance.CurrentMoney = jsonSaveFile.currentMoney;
-
-        PlayerManaHandler.Instance.MaxManaFlask = jsonSaveFile.maxManaFlask;
-        PlayerHealtHandler.Instance.MaxHealtFlaskNumber = jsonSaveFile.maxHealtFlaskNumber;
-
-        AttackHandler attackHandler = GetComponent<AttackHandler>();
-        attackHandler.WeaponType = jsonSaveFile.weaponTypes;
-        attackHandler.WeaponType.weaponName = jsonSaveFile.weaponName;
-        attackHandler.WeaponType.currentDamage = jsonSaveFile.damage;
-        attackHandler.WeaponType.currentLevel = jsonSaveFile.currentLevel;
-
-
-
-
-      }
+        Load();
     }
+
 
     private void Update()
     {
@@ -44,7 +21,7 @@ public class JsonSave : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-          Save();
+      Save();
     }
 
     private void Save()
@@ -70,14 +47,70 @@ public class JsonSave : MonoBehaviour
       jsonSaveFile.damage = jsonSaveFile.weaponTypes.currentDamage;
       jsonSaveFile.currentLevel = jsonSaveFile.weaponTypes.currentLevel;
       jsonSaveFile.maxLevel = jsonSaveFile.weaponTypes.maxLevel;
+      
+      foreach(WeaponTypes ownedWeapon in AttackHandler.Instance.ownedWeapons)
+      {
+        jsonSaveFile.ownedWeapon.Add(ownedWeapon);
+      }
 
 
-      string jsonFile = JsonUtility.ToJson(jsonSaveFile);
+       string jsonFile = JsonUtility.ToJson(jsonSaveFile);
        File.WriteAllText(Application.persistentDataPath+"/save.txt", jsonFile);
 
     }
 
+        private void Load()
+    {
+        if (File.Exists((Application.persistentDataPath + "/save.txt")))
+        {
+            string saveFile = File.ReadAllText(Application.persistentDataPath + "/save.txt");
+
+            JsonSaveFile jsonSaveFile = JsonUtility.FromJson<JsonSaveFile>(saveFile);
+
+            PlayerStats playerStats = GetComponent<PlayerStats>();
+
+            playerStats.HealtLevel = jsonSaveFile.healtLevel;
+            playerStats.ManaLevel = jsonSaveFile.manaLevel;
+            playerStats.StrenghtLevel = jsonSaveFile.strenghtLevel;
+
+            MoneyManager.Instance.CurrentMoney = jsonSaveFile.currentMoney;
+
+            PlayerManaHandler.Instance.MaxManaFlask = jsonSaveFile.maxManaFlask;
+            PlayerHealtHandler.Instance.MaxHealtFlaskNumber = jsonSaveFile.maxHealtFlaskNumber;
+
+            AttackHandler attackHandler = AttackHandler.Instance;
+            attackHandler.WeaponType = jsonSaveFile.weaponTypes;
+            attackHandler.WeaponType.weaponName = jsonSaveFile.weaponName;
+            attackHandler.WeaponType.currentDamage = jsonSaveFile.damage;
+            attackHandler.WeaponType.currentLevel = jsonSaveFile.currentLevel;
+            
+            if(jsonSaveFile.ownedWeapon.Count>0)
+            {
+              foreach(WeaponTypes ownedWeapon in jsonSaveFile.ownedWeapon)
+              {
+              attackHandler.ownedWeapons.Add(ownedWeapon);
+              }
+            }else
+            {
+              attackHandler.ownedWeapons.Add(starterWeapon);
+            }
+
+
+
+            if (attackHandler.WeaponType == null && jsonSaveFile.ownedWeapon != null)
+            {
+              attackHandler.WeaponType = starterWeapon;
+              attackHandler.ownedWeapons.Add(starterWeapon);
+            }
+
+          AttackHandler.Instance.enabled = true;
+        }
+    }
+
+
 }
+
+
 
 public class JsonSaveFile
 {
@@ -100,5 +133,7 @@ public class JsonSaveFile
     public float damage;
     public int currentLevel;
     public int maxLevel;
+
+    public List<WeaponTypes> ownedWeapon = new List<WeaponTypes>();
 
 }

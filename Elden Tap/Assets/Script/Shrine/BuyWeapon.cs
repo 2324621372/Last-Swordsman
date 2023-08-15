@@ -2,49 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BuyWeapon : MonoBehaviour
 {
- [SerializeField] private WeaponTypes newWeapon;
- 
- 
- [SerializeField] private TextMeshProUGUI weaponNameTxt;
- [SerializeField] private TextMeshProUGUI weaponDamageTxt;
- [SerializeField] private TextMeshProUGUI weaponMaxLevelTxt;
- [SerializeField] private TextMeshProUGUI weaponCostTxt;
+  [SerializeField] RectTransform shopContainer;
+  Vector2 shopSize;
+  [SerializeField] List<WeaponTypes> availableWeapon;
 
+  List<RectTransform> currentContainer = new List<RectTransform>();
 
- private string weaponName;
- private string weaponDamage;
- private string weaponMaxLevel;
- private string weaponCost;
-    private void OnEnable()
-    {
-      weaponName =  newWeapon.weaponName;
-      weaponNameTxt.text = weaponName;
-      
-      weaponDamage = newWeapon.startDamage.ToString();
-      weaponDamageTxt.text = $"Damage: {weaponDamage}";
+  int itemNumber = 1;
 
-      weaponMaxLevel = newWeapon.maxLevel.ToString();
-      weaponMaxLevelTxt.text = $"Max Level: {weaponMaxLevel}";
-
-      weaponCost = newWeapon.cost.ToString();
-      weaponCostTxt.text = $"Cost {weaponCost}";
-
-    }
-
-public void BuyIt() 
+  private void Start()
   {
-    if(MoneyManager.Instance.CurrentMoney>newWeapon.cost && FindObjectOfType<AttackHandler>().WeaponType != newWeapon)
+    shopSize = shopContainer.sizeDelta;
+    SetLists();
+
+    
+  }
+
+  public void SetLists()
+  {
+    if(currentContainer.Count>0)
     {
-        newWeapon.currentDamage = newWeapon.startDamage;
-        FindObjectOfType<AttackHandler>().WeaponType = newWeapon;
+      foreach(RectTransform current in currentContainer)
+      {
+        Destroy(current.gameObject);
+      }
+
+      itemNumber = 1;
     }
-    else if(FindObjectOfType<AttackHandler>().WeaponType == newWeapon)
-    Debug.Log("You have this weapon");
 
-  } 
+         foreach (WeaponTypes alreadyBoughtWeapon in AttackHandler.Instance.ownedWeapons)
+         {
+              if (availableWeapon.Contains(alreadyBoughtWeapon))
+              {
+                  availableWeapon.Remove(alreadyBoughtWeapon);
+              }
+        }
 
+     foreach(WeaponTypes avaliableWeapon in availableWeapon)
+    {
+      itemNumber++;
+      RectTransform shopWeapon = Instantiate(shopContainer, Vector3.zero, Quaternion.identity, transform);
+      SetShopItemInfo setShopItemInfo = new SetShopItemInfo();
+      setShopItemInfo.SetInfo(shopWeapon.gameObject,  avaliableWeapon, this);
+      shopWeapon.anchoredPosition = new Vector2(0,100+(shopWeapon.transform.position.y+(-itemNumber*shopSize.y)));
+      currentContainer.Add(shopWeapon);
+    }
+  }
 
+  public void SetListsAgain()
+  {
+
+  }
+
+  // private void OnDisable()
+  // {
+  //  foreach(RectTransform x in transform)
+  //  {
+  //   x.gameObject.SetActive(false);
+  //   itemNumber = 1;
+  //  } 
+  //    }
+}
+
+public class SetShopItemInfo
+{
+  public void SetInfo(GameObject shopContainer, WeaponTypes weaponTypes, BuyWeapon buyWeapon)
+  {
+    shopContainer.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = $"{weaponTypes.weaponName}";
+    shopContainer.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = $"Damage: {weaponTypes.currentDamage}";
+    shopContainer.transform.Find("Level").GetComponent<TextMeshProUGUI>().text = $"Max Level: {weaponTypes.maxLevel}";
+    shopContainer.transform.Find("Buy Button").GetComponent<Button>().onClick.AddListener( () =>shopContainer.transform.Find("Buy Button").GetComponent<BuyWeaponButton>().BuyTheweapon(weaponTypes));
+    shopContainer.transform.Find("Buy Button").GetComponent<Button>().onClick.AddListener ( ()=>buyWeapon.SetLists());  
+  }
 }
