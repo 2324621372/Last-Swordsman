@@ -19,6 +19,7 @@ public class EnemyHealtBar : MonoBehaviour
   
         if(FindObjectOfType<EnemyHealtHandler>() != null)
         SetUpBar();
+
         else{Debug.Log("aa");}
         FindObjectOfType<EnemyHealtHandler>().OnEnemyChangeHealt += SetUpBar;
         stageHandler.newEnemyEvent += SetEventAgain;
@@ -26,8 +27,13 @@ public class EnemyHealtBar : MonoBehaviour
 
     public void SetUpBar()
     {
-        enemyHealt = FindObjectOfType<EnemyHealtHandler>().EnemyHealt;
-        enemyMaxHealt = FindObjectOfType<EnemyHealtHandler>().EnemyMaxHealt;
+        EnemyHealtHandler enemyHealtHandler= FindObjectOfType<EnemyHealtHandler>();
+        enemyHealt = enemyHealtHandler.EnemyHealt;
+        enemyMaxHealt = enemyHealtHandler.EnemyMaxHealt;
+        if(enemyHealt == null)
+        Debug.Log("a");
+        if(enemyHealtBarSlider == null)
+        Debug.Log("aaa");
         enemyHealtBarSlider.value = enemyHealt;
         enemyHealtBarSlider.maxValue = enemyMaxHealt;
         enemyHealtNumber.text = $"{enemyHealt}/{enemyMaxHealt}";

@@ -36,8 +36,20 @@ public class AttackHandler : MonoBehaviour
 
        upragdeWeapon  += UpdateWeaponStats;
        playerStats = GetComponent<PlayerStats>();
-       damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.currentDamage;
-       playerStats.OnChangeStats += () => damage = ((playerStats.StrenghtLevel-1)*5)+weaponType.currentDamage;
+
+   if (playerStats != null && weaponType != null)
+   {
+       damage = ((playerStats.StrenghtLevel - 1) * 5) + weaponType.currentDamage;
+   }
+
+ 
+   playerStats.OnChangeStats += () =>
+   {
+       if (playerStats != null && weaponType != null)
+       {
+           damage = ((playerStats.StrenghtLevel - 1) * 5) + weaponType.currentDamage;
+       }
+   };
     }
 
     void Update()

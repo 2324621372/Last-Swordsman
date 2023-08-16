@@ -11,12 +11,7 @@ public class JsonSave : MonoBehaviour
     private void Start()
     {
         Load();
-    }
-
-
-    private void Update()
-    {
-      Save();
+        Application.targetFrameRate = 60;
     }
 
     private void OnApplicationQuit()
@@ -27,7 +22,7 @@ public class JsonSave : MonoBehaviour
     private void Save()
     {
       JsonSaveFile jsonSaveFile = new JsonSaveFile();
-
+      
       jsonSaveFile.playerStats =  GetComponent<PlayerStats>();
       jsonSaveFile.healtLevel = jsonSaveFile.playerStats.HealtLevel;
       jsonSaveFile.manaLevel = jsonSaveFile.playerStats.ManaLevel;
@@ -35,14 +30,16 @@ public class JsonSave : MonoBehaviour
 
       jsonSaveFile.moneyManager = MoneyManager.Instance;
       jsonSaveFile.currentMoney = jsonSaveFile.moneyManager.CurrentMoney;
-
+      
       jsonSaveFile.playerManaHandler = PlayerManaHandler.Instance;
       jsonSaveFile.maxManaFlask = jsonSaveFile.playerManaHandler.MaxManaFlask;
 
       jsonSaveFile.playerHealtHandler = PlayerHealtHandler.Instance;
       jsonSaveFile.maxHealtFlaskNumber = jsonSaveFile.playerHealtHandler.MaxHealtFlaskNumber;
-
-      jsonSaveFile.weaponTypes = GetComponent<AttackHandler>().WeaponType;
+      
+      if(AttackHandler.Instance.WeaponType !=null)
+      {
+      jsonSaveFile.weaponTypes = AttackHandler.Instance.WeaponType;
       jsonSaveFile.weaponName = jsonSaveFile.weaponTypes.weaponName;
       jsonSaveFile.damage = jsonSaveFile.weaponTypes.currentDamage;
       jsonSaveFile.currentLevel = jsonSaveFile.weaponTypes.currentLevel;
@@ -50,7 +47,18 @@ public class JsonSave : MonoBehaviour
       
       foreach(WeaponTypes ownedWeapon in AttackHandler.Instance.ownedWeapons)
       {
+        if(ownedWeapon !=null)
         jsonSaveFile.ownedWeapon.Add(ownedWeapon);
+      }
+
+      }else
+      {
+      jsonSaveFile.weaponTypes = starterWeapon;
+      jsonSaveFile.weaponName = jsonSaveFile.weaponTypes.weaponName;
+      jsonSaveFile.damage = jsonSaveFile.weaponTypes.currentDamage;
+      jsonSaveFile.currentLevel = jsonSaveFile.weaponTypes.currentLevel;
+      jsonSaveFile.maxLevel = jsonSaveFile.weaponTypes.maxLevel;
+      jsonSaveFile.ownedWeapon.Add(jsonSaveFile.weaponTypes);
       }
 
 
@@ -77,19 +85,23 @@ public class JsonSave : MonoBehaviour
 
             PlayerManaHandler.Instance.MaxManaFlask = jsonSaveFile.maxManaFlask;
             PlayerHealtHandler.Instance.MaxHealtFlaskNumber = jsonSaveFile.maxHealtFlaskNumber;
-
+            
             AttackHandler attackHandler = AttackHandler.Instance;
-            attackHandler.WeaponType = jsonSaveFile.weaponTypes;
-            attackHandler.WeaponType.weaponName = jsonSaveFile.weaponName;
-            attackHandler.WeaponType.currentDamage = jsonSaveFile.damage;
-            attackHandler.WeaponType.currentLevel = jsonSaveFile.currentLevel;
+            if(jsonSaveFile.weaponTypes != null)
+            {
+              attackHandler.WeaponType = jsonSaveFile.weaponTypes;
+              attackHandler.WeaponType.weaponName = jsonSaveFile.weaponName;
+              attackHandler.WeaponType.currentDamage = jsonSaveFile.damage;
+              attackHandler.WeaponType.currentLevel = jsonSaveFile.currentLevel;
+            }
+
             
             if(jsonSaveFile.ownedWeapon.Count>0)
             {
-              foreach(WeaponTypes ownedWeapon in jsonSaveFile.ownedWeapon)
-              {
-              attackHandler.ownedWeapons.Add(ownedWeapon);
-              }
+            foreach(WeaponTypes ownedWeapon in jsonSaveFile.ownedWeapon)
+            {
+            attackHandler.ownedWeapons.Add(ownedWeapon);
+            }
             }else
             {
               attackHandler.ownedWeapons.Add(starterWeapon);
@@ -104,8 +116,9 @@ public class JsonSave : MonoBehaviour
             }
 
           AttackHandler.Instance.enabled = true;
-        }
+        }    else{Debug.Log("a");}
     }
+
 
 
 }

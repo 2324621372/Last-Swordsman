@@ -36,6 +36,7 @@ public class Spell : MonoBehaviour
      elepsedTime += Time.deltaTime;
      percantage = elepsedTime / duration;
      
+     if(enemyAttack != null)
      transform.position = Vector3.Lerp(startPosition, enemyAttack.gameObject.transform.position, percantage);  
    }
 

@@ -14,7 +14,7 @@ public class BuyWeapon : MonoBehaviour
 
   int itemNumber = 1;
 
-  private void Start()
+  private void OnEnable()
   {
     shopSize = shopContainer.sizeDelta;
     SetLists();
@@ -75,6 +75,7 @@ public class SetShopItemInfo
     shopContainer.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = $"{weaponTypes.weaponName}";
     shopContainer.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = $"Damage: {weaponTypes.currentDamage}";
     shopContainer.transform.Find("Level").GetComponent<TextMeshProUGUI>().text = $"Max Level: {weaponTypes.maxLevel}";
+    shopContainer.transform.Find("Cost").GetComponent<TextMeshProUGUI>().text = $"Cost: {weaponTypes.cost}";
     shopContainer.transform.Find("Buy Button").GetComponent<Button>().onClick.AddListener( () =>shopContainer.transform.Find("Buy Button").GetComponent<BuyWeaponButton>().BuyTheweapon(weaponTypes));
     shopContainer.transform.Find("Buy Button").GetComponent<Button>().onClick.AddListener ( ()=>buyWeapon.SetLists());  
   }

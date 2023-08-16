@@ -24,7 +24,7 @@ public class UpragdeWeaponSystem : MonoBehaviour
 
     private void ShowsInfo()
     {
-        currentWeaponInfo.text = $"Weapon = {attackHandler.WeaponType.weaponName}";
+        currentWeaponInfo.text = $"Weapon: {attackHandler.WeaponType.weaponName}";
         weaponLevel.text = $"Level: {attackHandler.WeaponType.currentLevel}";
         weaponMaxLevel.text = $"Maximum level: {attackHandler.WeaponType.maxLevel}";
         cost = Mathf.Pow(3, attackHandler.WeaponType.currentLevel - 1) * 100;
@@ -38,7 +38,6 @@ public class UpragdeWeaponSystem : MonoBehaviour
          MoneyManager.Instance.DecreaseMoney(cost);
          attackHandler.WeaponType.currentDamage +=10;
          attackHandler.WeaponType.currentLevel += 1;
-         Debug.Log("a");
          attackHandler.upragdeWeapon();
          ShowsInfo();
     }
