@@ -11,11 +11,20 @@ public class JsonSave : MonoBehaviour
     private void Start()
     {
         Load();
-        Application.targetFrameRate = 60;
     }
 
-    private void OnApplicationQuit()
+
+
+    private void OnApplicationPause(bool pauseStatus) 
     {
+      if(pauseStatus)
+      {
+       Save();  
+      }
+
+    }
+
+    private void OnApplicationQuit() {
       Save();
     }
 
@@ -39,6 +48,7 @@ public class JsonSave : MonoBehaviour
       
       if(AttackHandler.Instance.WeaponType !=null)
       {
+
       jsonSaveFile.weaponTypes = AttackHandler.Instance.WeaponType;
       jsonSaveFile.weaponName = jsonSaveFile.weaponTypes.weaponName;
       jsonSaveFile.damage = jsonSaveFile.weaponTypes.currentDamage;
@@ -49,9 +59,11 @@ public class JsonSave : MonoBehaviour
       {
         if(ownedWeapon !=null)
         jsonSaveFile.ownedWeapon.Add(ownedWeapon);
+
       }
 
-      }else
+      }
+      else
       {
       jsonSaveFile.weaponTypes = starterWeapon;
       jsonSaveFile.weaponName = jsonSaveFile.weaponTypes.weaponName;
@@ -67,7 +79,7 @@ public class JsonSave : MonoBehaviour
 
     }
 
-        private void Load()
+    private void Load()
     {
         if (File.Exists((Application.persistentDataPath + "/save.txt")))
         {
@@ -109,14 +121,14 @@ public class JsonSave : MonoBehaviour
 
 
 
-            if (attackHandler.WeaponType == null && jsonSaveFile.ownedWeapon != null)
+            if (attackHandler.WeaponType == null && jsonSaveFile.ownedWeapon == null)
             {
               attackHandler.WeaponType = starterWeapon;
               attackHandler.ownedWeapons.Add(starterWeapon);
             }
 
           AttackHandler.Instance.enabled = true;
-        }    else{Debug.Log("a");}
+        }    
     }
 
 
