@@ -33,7 +33,6 @@ public class EnemyHealtBar : MonoBehaviour
         if(enemyHealt == null)
         Debug.Log("a");
         if(enemyHealtBarSlider == null)
-        Debug.Log("aaa");
         enemyHealtBarSlider.value = enemyHealt;
         enemyHealtBarSlider.maxValue = enemyMaxHealt;
         enemyHealtNumber.text = $"{enemyHealt}/{enemyMaxHealt}";

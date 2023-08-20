@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Swamp.unity
     guid: 1bede25926f7f8d468b62d8904ade32b
+  - enabled: 1
+    path: Assets/Scenes/Cursed Forest.unity
+    guid: f64f389765761c94cb846ee043a72cf3
   m_configObjects: {}

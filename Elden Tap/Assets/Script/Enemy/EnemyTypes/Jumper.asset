@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2194ed1d5bfd84d94a7bdfa4264be3, type: 3}
   m_Name: Jumper
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Jumper
   enemyHealt: 600
   enemyMaxHealt: 600
   enemyDamage: 30
