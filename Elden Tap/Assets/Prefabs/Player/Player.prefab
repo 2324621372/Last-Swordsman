@@ -4969,6 +4969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffe7bc62f778a8438c89f0a198763a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownedWeapons: []
   weaponType: {fileID: 11400000, guid: 4c6b95db116bf0449b7315fe98b126a6, type: 2}
 --- !u!114 &3258959089499546571
 MonoBehaviour:
@@ -5032,6 +5033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9924d07dba51943b2f40bcaa797708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starterWeapon: {fileID: 0}
 --- !u!1 &4797876995339242970
 GameObject:
   m_ObjectHideFlags: 0

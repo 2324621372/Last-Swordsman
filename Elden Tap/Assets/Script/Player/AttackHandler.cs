@@ -27,6 +27,11 @@ public class AttackHandler : MonoBehaviour
     private PlayerStats playerStats;
     private float damage;
 
+    Animator animator;
+    int currentAnim =0;
+    private float lastClickTime = 0f;
+    private float idleTimeThreshold = 1.0f;
+
     void Awake() 
     {
         if(Instance == null)
@@ -36,6 +41,9 @@ public class AttackHandler : MonoBehaviour
 
        upragdeWeapon  += UpdateWeaponStats;
        playerStats = GetComponent<PlayerStats>();
+       animator = GetComponentInChildren<Animator>();
+       lastClickTime = Time.time;
+
 
    if (playerStats != null && weaponType != null)
    {
@@ -57,13 +65,33 @@ public class AttackHandler : MonoBehaviour
         if(Input.GetMouseButtonDown(0)&&FindObjectOfType<EnemyAttack>())
         {
             AttackStage();
+            lastClickTime = Time.time;
+            currentAnim++;
+            if(currentAnim<3)
+            {
+                animator.SetInteger("AttackStage",currentAnim);
+            }
+            else
+            {
+                currentAnim = 1;
+                animator.SetInteger("AttackStage",currentAnim);
+            }
+            
+        }
+
+        if (Time.time - lastClickTime > idleTimeThreshold)
+        {
+            currentAnim = 0;
+            animator.SetInteger("AttackStage", currentAnim);
         }
     }
-
     private void AttackStage()
     {
         EnemyHealtHandler currentEnemy = FindObjectOfType<EnemyHealtHandler>();
-        currentEnemy.DecreaseEnemyHealt(damage);
+        if(currentEnemy!=null)
+        {
+            currentEnemy.DecreaseEnemyHealt(damage);
+        }
     }
 
     private void UpdateWeaponStats()

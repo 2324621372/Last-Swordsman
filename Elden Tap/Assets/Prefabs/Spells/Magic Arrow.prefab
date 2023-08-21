@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5926056391036629836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5299, y: 0.204, z: 0}
+  m_LocalPosition: {x: 1.56, y: 2.84, z: 0}
   m_LocalScale: {x: 2.2066, y: 2.247832, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83dd608b8388a94f9ac983031217c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellTypes: {fileID: 11400000, guid: 31b708211b68b0645b03eb4ece288d36, type: 2}
-  spellVFX: {fileID: 2030710094463502418, guid: 2f5a92cc3c04d06429a926b2a2867647, type: 3}
+  spellTypes: {fileID: 11400000, guid: 1d5bafd5644e1a845be9549eb38c64d3, type: 2}
+  spellVFX: {fileID: 2030710094463502418, guid: 5bd5f98a783e453438093a63d7822bcf, type: 3}
   duration: 0.5
 --- !u!50 &-5864010880490627018
 Rigidbody2D:
@@ -141,14 +141,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 0.1875}
+    oldSize: {x: 0.5, y: 0.12}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.12}
   m_EdgeRadius: 0
 --- !u!1 &7743115270333535706
 GameObject:
@@ -175,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7743115270333535706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.493, y: 0, z: 0}
+  m_LocalPosition: {x: -0.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,8 +232,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.022598267
-        value: 0
+        time: 0
+        value: 0.21206284
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -241,31 +241,31 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3210546
-        value: 0.24091953
-        inSlope: 0.4286798
-        outSlope: 0.4286798
+        time: 0.31974235
+        value: 0.18800205
+        inSlope: -0.27854908
+        outSlope: -0.27854908
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.8485596
-        outWeight: 0.563366
+        inWeight: 0.33333334
+        outWeight: 0.08685419
       - serializedVersion: 3
-        time: 0.98040175
-        value: 0.42647064
-        inSlope: -1.6678529
-        outSlope: -1.6678529
+        time: 0.95215654
+        value: 0
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.2273359
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.18823527, g: 0.81960785, b: 0.8133593, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 1, g: 0.4927312, b: 0.033018887, a: 0}
+      key0: {r: 0.7028302, g: 0.8582971, b: 1, a: 1}
+      key1: {r: 0, g: 0.58708143, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -273,7 +273,7 @@ TrailRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 21974
       ctime1: 33346
-      ctime2: 33346
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
