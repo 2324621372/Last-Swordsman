@@ -30,7 +30,7 @@ public class AttackHandler : MonoBehaviour
     Animator animator;
     int currentAnim =0;
     private float lastClickTime = 0f;
-    private float idleTimeThreshold = 1.0f;
+    private float idleTimeThreshold = 0.3f;
 
     void Awake() 
     {
